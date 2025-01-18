@@ -5,6 +5,7 @@ import Discover from './pages/Discover';
 import MyTrips from './pages/MyTrips';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import AddTrip from './pages/AddTrip';
 
 function App() {
   // State to track the logged-in user
@@ -26,6 +27,7 @@ function App() {
           <Route path="/mytrips" element={<MyTrips />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/addtrip" element={<AddTrip user={user}/>} />
         </Routes>
       </div>
     </Router>
