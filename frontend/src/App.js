@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Discover from './pages/Discover';
 import MyTrips from './pages/MyTrips';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
+// Protected Route Component
+const ProtectedRoute = ({ user, children }) => {
+  return user ? children : <Navigate to="/login" />;
+};
+
 function App() {
-  // State to track the logged-in user
   const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem('user');
     return storedUser ? JSON.parse(storedUser) : null;
@@ -23,9 +27,17 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<Discover />} />
-          <Route path="/mytrips" element={<MyTrips />} />
+          <Route
+            path="/mytrips"
+            element={
+              <ProtectedRoute user={user}>
+                <MyTrips />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
+          <Route path="*" element={<div>Page Not Found</div>} />
         </Routes>
       </div>
     </Router>
@@ -33,3 +45,4 @@ function App() {
 }
 
 export default App;
+
