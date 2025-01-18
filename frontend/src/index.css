@@ -1,45 +1,186 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600&family=Inter:wght@300;400;500;600&display=swap");
 
+/* Reset and base styles */
 body {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: "Inter", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
-  color: #333;
+  color: #111;
+  min-height: 100vh;
+  line-height: 1.6;
 }
 
+/* Background image setup */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ian-dooley-DuBNA1QMpPA-unsplash.jpg-ISkJZ0shRk2TSF9ZlKq5dVfnWtuYXX.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  opacity: 0.9;
+  z-index: -1;
+}
+
+/* Container styles */
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0 24px;
+  position: relative;
 }
 
+/* Main content area */
 main {
   margin-top: 80px;
+  position: relative;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-a {
-  color: #0066cc;
+/* Hero section */
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  transform: translateY(-40px);
+  animation: fadeIn 1s ease-out;
+}
+
+.hero h1 {
+  font-family: "Unbounded", cursive;
+  font-size: 3.5rem;
+  margin: 0 0 20px;
+  background: linear-gradient(135deg, #2575fc, #6a11cb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  color: #555;
+  margin: 0 0 40px;
+  font-weight: 300;
+}
+
+/* Button styles */
+.button-group {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+button,
+.button {
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 12px 32px;
+  border-radius: 100px;
+  border: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.primary-button {
+  background: linear-gradient(135deg, #2575fc, #6a11cb);
+  color: white;
+}
+
+.secondary-button {
+  background: transparent;
+  color: #2575fc;
+  border: 2px solid #2575fc;
+}
+
+button:hover,
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(37, 117, 252, 0.1);
+}
+
+button:active,
+.button:active {
+  transform: translateY(0);
+}
+
+/* Navigation styles */
+nav {
+  padding: 20px 0;
+}
+
+nav a {
+  color: #333;
   text-decoration: none;
+  font-weight: 500;
   transition: color 0.3s ease;
 }
 
-a:hover {
-  color: #004499;
+nav a:hover {
+  color: #2575fc;
 }
 
-button {
-  cursor: pointer;
-  background-color: #0066cc;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-40px);
+  }
 }
 
-button:hover {
-  background-color: #004499;
+/* Responsive design */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  button,
+  .button {
+    width: 100%;
+  }
+}
+
+/* Glass panel utility class */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Utility classes */
+.text-gradient {
+  background: linear-gradient(135deg, #2575fc, #6a11cb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
