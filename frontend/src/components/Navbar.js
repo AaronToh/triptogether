@@ -18,6 +18,7 @@ function Navbar({ user, setUser }) {
         <li><Link to="/mytrips">My Trips</Link></li>
         {user ? (
           <>
+            <li><Link to="/addtrip">Add Trip</Link></li>
             <li>Welcome, {user.username}</li>
             <li><button onClick={handleLogout}>Logout</button></li>
           </>

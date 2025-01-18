@@ -5,6 +5,7 @@ import Discover from './pages/Discover';
 import MyTrips from './pages/MyTrips';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import AddTrip from './pages/AddTrip';
 
 // Protected Route Component
 const ProtectedRoute = ({ user, children }) => {
@@ -37,7 +38,7 @@ function App() {
           />
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
-          <Route path="*" element={<div>Page Not Found</div>} />
+          <Route path="/addtrip" element={<AddTrip user={user}/>} />
         </Routes>
       </div>
     </Router>

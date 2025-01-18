@@ -37,3 +37,13 @@ export const logoutUser = () => {
   }
 };
 
+export const addTrip = async (tripData) => {
+    try {
+      const response = await API.post('/trips/add', tripData); // Send tripData directly
+      return response.data;
+    } catch (error) {
+      console.error('Error during trip addition:', error.response?.data?.message || error.message);
+      throw error.response?.data?.message || 'Trip addition failed';
+    }
+  };
+  
