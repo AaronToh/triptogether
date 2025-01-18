@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import './Navbar.css';
 
 function Navbar({ user, setUser }) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    setUser(null); // Clear user state
-    localStorage.removeItem('user'); // Clear user from localStorage
+    setUser(null);
+    localStorage.removeItem('user');
     navigate('/login');
   };
 
@@ -34,3 +35,4 @@ function Navbar({ user, setUser }) {
 }
 
 export default Navbar;
+

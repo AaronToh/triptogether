@@ -1,38 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', Arial, sans-serif;
   margin: 0;
   padding: 0;
-}
-
-.navbar {
-  background-color: #333;
-  color: white;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.navbar ul {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar ul li {
-  margin-right: 20px;
-}
-
-.navbar ul li a {
-  color: white;
-  text-decoration: none;
+  background-color: #f4f4f4;
+  color: #333;
 }
 
 .container {
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
 }
 
 main {
-  margin-top: 80px; /* Match the navbar's height */
+  margin-top: 80px;
 }
+
+a {
+  color: #0066cc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #004499;
+}
+
+button {
+  cursor: pointer;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #004499;
+}
+
