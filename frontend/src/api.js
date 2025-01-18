@@ -47,3 +47,24 @@ export const addTrip = async (tripData) => {
     }
   };
   
+  // Fetch all trips
+export const fetchTrips = async () => {
+    try {
+      const response = await API.get('/trips');
+      return response.data;
+    } catch (error) {
+      console.error('Error during trip fetching:', error.response?.data?.message || error.message);
+      throw error.response?.data?.message || 'Trip fetching failed';
+    }
+  };
+
+  // Join a trip
+export const joinTrip = async (tripId, userId) => {
+    try {
+      const response = await API.post(`/trips/${tripId}/join`, { userId });
+      return response.data;
+    } catch (error) {
+      console.error('Error during joining trip:', error.response?.data?.message || error.message);
+      throw error.response?.data?.message || 'Joining trip failed';
+    }
+  };

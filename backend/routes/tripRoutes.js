@@ -2,6 +2,18 @@ const express = require('express');
 const Trip = require('../models/Trip');
 const router = express.Router();
 
+// Fetch all trips (GET)
+router.get('/', async (req, res) => {
+    try {
+      // Fetch all trips from the database
+      const trips = await Trip.find().populate('creator', 'username email'); // Optionally populate creator details
+      res.status(200).json(trips);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Failed to fetch trips. Please try again.' });
+    }
+  });
+  
 // Add Trip Route (POST)
 router.post('/add', async (req, res) => {
     const { location, startDate, endDate, vacancy, creator } = req.body;
