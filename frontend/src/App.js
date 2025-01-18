@@ -23,8 +23,8 @@ function App() {
       <Navbar user={user} setUser={setUser} />
       <div className="container">
         <Routes>
-          <Route path="/" element={<Discover />} />
-          <Route path="/mytrips" element={<MyTrips />} />
+          <Route path="/" element={<Discover user={user}/>} />
+          <Route path="/mytrips" element={<MyTrips user={user}/>} />
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/addtrip" element={<AddTrip user={user}/>} />

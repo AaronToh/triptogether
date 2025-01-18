@@ -32,3 +32,7 @@ body {
 .container {
   padding: 20px;
 }
+
+main {
+  margin-top: 80px; /* Match the navbar's height */
+}

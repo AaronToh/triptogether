@@ -11,6 +11,9 @@ const tripSchema = new mongoose.Schema({
   startDate: { type: Date, required: true },
   endDate: { type: Date, required: true },
   vacancy: { type: Number, required: true },
+  participants: [
+    { type: mongoose.Schema.Types.ObjectId, ref: 'User' } // Array of user IDs
+  ],
 }, { timestamps: true });
 
 module.exports = mongoose.model('Trip', tripSchema);

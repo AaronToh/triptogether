@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Discover.css'; // Add styles here or inline
 
-function Discover() {
+function Discover({ user }) {
   const [trips, setTrips] = useState([]); // State to store trips
   const [message, setMessage] = useState(''); // State to store feedback messages
 
@@ -23,8 +23,8 @@ function Discover() {
   // Handle join button click
   const handleJoinTrip = async (tripId) => {
     try {
-      const response = await axios.post(`http://localhost:5000/api/trips/${tripId}/join`, {
-        userId: 'user_id_here', // Replace with logged-in user ID
+      const response = await axios.post(`http://localhost:5001/api/trips/${tripId}/join`, {
+        userId: user._id,
       });
       setMessage(response.data.message || 'Successfully joined the trip!');
     } catch (err) {
