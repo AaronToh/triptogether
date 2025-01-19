@@ -57,5 +57,4 @@ The frontend will be running at http://localhost:3000.
 
 The backend is hosted and accessible only via authenticated endpoints. 
 
-## Screenshots
-![alt text](<Screenshot 2025-01-19 at 11.01.25 AM.png>)![alt text](<Screenshot 2025-01-19 at 11.02.29 AM.png>)![alt text](<Screenshot 2025-01-19 at 11.02.45 AM.png>)
+## Screenshots![alt text](<resources/Screenshot 2025-01-19 at 11.01.25 AM.png>)![alt text](<resources/Screenshot 2025-01-19 at 11.02.29 AM.png>)![alt text](<resources/Screenshot 2025-01-19 at 11.02.45 AM.png>)
