@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { addTrip } from '../api';
+import './AddTrip.css';
 
 const AddTrip = ({ user }) => {
   const [tripData, setTripData] = useState({

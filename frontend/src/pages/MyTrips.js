@@ -1,71 +1,79 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './Discover.css'; // Reuse the same styling
 
 function MyTrips({ user }) {
   const [createdTrips, setCreatedTrips] = useState([]);
   const [joinedTrips, setJoinedTrips] = useState([]);
   const [error, setError] = useState('');
 
-  const userId = user._id; // Replace with the logged-in user's ID (use context or a global store in real apps)
-
   useEffect(() => {
     const fetchTrips = async () => {
       try {
-        const response = await axios.get(`http://localhost:5001/api/trips/user/${userId}`);
+        const response = await axios.get(`http://localhost:5001/api/trips/user/${user._id}`);
         setCreatedTrips(response.data.createdTrips);
         setJoinedTrips(response.data.joinedTrips);
       } catch (err) {
-        console.error(err);
+        console.error('Error fetching trips:', err);
         setError('Failed to load your trips.');
       }
     };
 
     fetchTrips();
-  }, [userId]);
+  }, [user]);
 
   return (
-    <div style={{ marginTop: '80px', padding: '20px' }}> {/* Adjust margin to fit your navbar */}
-      <h2>My Trips</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    <div className="discover-container">
+      <h1>My Trips</h1>
+      {error && <div className="message" style={{ background: '#ffebee', color: '#d32f2f' }}>{error}</div>}
 
       <div>
-        <h3>Created Trips</h3>
+        <h2>Created Trips</h2>
         {createdTrips.length > 0 ? (
-          <ul>
+          <div className="trip-list">
             {createdTrips.map((trip) => (
-              <li key={trip._id}>
-                <h4>{trip.location}</h4>
-                <p>Start Date: {new Date(trip.startDate).toLocaleDateString()}</p>
-                <p>End Date: {new Date(trip.endDate).toLocaleDateString()}</p>
-                <p>Vacancy: {trip.vacancy}</p>
-              </li>
+              <div className="trip-card" key={trip._id}>
+                <h2>{trip.location}</h2>
+                <p className="trip-date">
+                  <span className="icon">🗓</span>
+                  {new Date(trip.startDate).toLocaleDateString()} - {new Date(trip.endDate).toLocaleDateString()}
+                </p>
+                <p className="trip-vacancy">
+                  <span className="icon">👥</span>
+                  {trip.vacancy} {trip.vacancy === 1 ? 'spot' : 'spots'} left
+                </p>
+              </div>
             ))}
-          </ul>
+          </div>
         ) : (
-          <p>You haven't created any trips yet.</p>
+          <p className="no-trips">You haven’t created any trips yet.</p>
         )}
       </div>
 
       <div>
-        <h3>Joined Trips</h3>
+        <h2>Joined Trips</h2>
         {joinedTrips.length > 0 ? (
-          <ul>
+          <div className="trip-list">
             {joinedTrips.map((trip) => (
-              <li key={trip._id}>
-                <h4>{trip.location}</h4>
-                <p>Start Date: {new Date(trip.startDate).toLocaleDateString()}</p>
-                <p>End Date: {new Date(trip.endDate).toLocaleDateString()}</p>
-                <p>Vacancy: {trip.vacancy}</p>
-              </li>
+              <div className="trip-card" key={trip._id}>
+                <h2>{trip.location}</h2>
+                <p className="trip-date">
+                  <span className="icon">🗓</span>
+                  {new Date(trip.startDate).toLocaleDateString()} - {new Date(trip.endDate).toLocaleDateString()}
+                </p>
+                <p className="trip-vacancy">
+                  <span className="icon">👥</span>
+                  {trip.vacancy} {trip.vacancy === 1 ? 'spot' : 'spots'} left
+                </p>
+              </div>
             ))}
-          </ul>
+          </div>
         ) : (
-          <p>You haven't joined any trips yet.</p>
+          <p className="no-trips">You haven’t joined any trips yet.</p>
         )}
       </div>
     </div>
   );
 }
-
 
 export default MyTrips;

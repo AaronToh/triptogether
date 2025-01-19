@@ -1,21 +1,25 @@
+/* Container Styling */
 .discover-container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 100px auto; /* Adds top margin to avoid overlap with navbar */
   padding: 40px 20px;
 }
 
+/* Page Title Styling */
 .discover-container h1 {
   text-align: center;
   color: #333;
   margin-bottom: 30px;
 }
 
+/* List Layout */
 .trip-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 30px;
 }
 
+/* Trip Card Styling */
 .trip-card {
   background: #fff;
   border-radius: 12px;
@@ -29,12 +33,14 @@
   box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Trip Title Styling */
 .trip-card h2 {
   margin: 0 0 15px;
   color: #0066cc;
   font-size: 24px;
 }
 
+/* Trip Details Styling */
 .trip-card p {
   margin: 10px 0;
   color: #555;
@@ -52,6 +58,7 @@
   font-size: 18px;
 }
 
+/* Button Styling */
 .join-button,
 .full-button {
   display: block;
@@ -81,6 +88,7 @@
   cursor: not-allowed;
 }
 
+/* Message Styling */
 .message {
   margin: 20px 0;
   padding: 15px;
@@ -91,10 +99,15 @@
   font-weight: 500;
 }
 
+.message.error {
+  background: #ffebee;
+  color: #d32f2f;
+}
+
+/* No Trips Styling */
 .no-trips {
   text-align: center;
   color: #666;
   font-size: 18px;
   margin-top: 40px;
 }
-

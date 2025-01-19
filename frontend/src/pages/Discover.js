@@ -1,16 +1,27 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Discover.css';
 
 function Discover({ user }) {
   const [trips, setTrips] = useState([]);
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTrips = async () => {
       try {
         const response = await axios.get('http://localhost:5001/api/trips');
-        setTrips(response.data);
+        let fetchedTrips = response.data;
+
+        // If user is logged in, filter out trips they have already joined
+        if (user) {
+          fetchedTrips = fetchedTrips.filter(
+            (trip) => !trip.participants || !trip.participants.includes(user._id)
+          );
+        }
+
+        setTrips(fetchedTrips);
       } catch (err) {
         console.error('Error fetching trips:', err);
         setMessage('Failed to load trips. Please try again later.');
@@ -18,21 +29,27 @@ function Discover({ user }) {
     };
 
     fetchTrips();
-  }, []);
+  }, [user]);
 
   const handleJoinTrip = async (tripId) => {
+    if (!user) {
+      navigate('/login'); // Redirect to login page if not logged in
+      return;
+    }
+
+    // Immediately remove the trip from the list (optimistic update)
+    const updatedTrips = trips.filter((trip) => trip._id !== tripId);
+    setTrips(updatedTrips);
+
     try {
       const response = await axios.post(`http://localhost:5001/api/trips/${tripId}/join`, {
         userId: user._id,
       });
       setMessage(response.data.message || 'Successfully joined the trip!');
-      // Update the trips list to reflect the change
-      setTrips(trips.map(trip => 
-        trip._id === tripId ? { ...trip, vacancy: trip.vacancy - 1 } : trip
-      ));
     } catch (err) {
       console.error('Error joining trip:', err);
-      setMessage('Failed to join the trip. Please try again.');
+      setMessage('Failed to join the trip.');
+      // Optionally refetch trips in case of failure
     }
   };
 
@@ -55,10 +72,10 @@ function Discover({ user }) {
               </p>
               <button
                 onClick={() => handleJoinTrip(trip._id)}
-                disabled={trip.vacancy <= 0 || !user}
+                disabled={trip.vacancy <= 0}
                 className={trip.vacancy > 0 ? 'join-button' : 'full-button'}
               >
-                {trip.vacancy > 0 ? (user ? 'Join Trip' : 'Login to Join') : 'Trip Full'}
+                {trip.vacancy > 0 ? 'Join Trip' : 'Trip Full'}
               </button>
             </div>
           ))}
@@ -71,4 +88,3 @@ function Discover({ user }) {
 }
 
 export default Discover;
-

@@ -1,0 +1,11 @@
+.discover-container h1 {
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.no-trips {
+  text-align: center;
+  color: #888;
+  font-size: 18px;
+  margin-top: 30px;
+}

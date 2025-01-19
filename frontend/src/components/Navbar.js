@@ -12,15 +12,15 @@ function Navbar({ user, setUser }) {
   };
 
   return (
-    <nav className="navbar">
-      <h1>Trip Explorer</h1>
+    <nav className="sidebar">
+      <h1>TripTogether</h1> {/* Updated website title */}
       <ul>
         <li><Link to="/">Discover</Link></li>
-        <li><Link to="/mytrips">My Trips</Link></li>
+        {user && <li><Link to="/mytrips">My Trips</Link></li>} {/* Only show if logged in */}
         {user ? (
           <>
             <li><Link to="/addtrip">Add Trip</Link></li>
-            <li>Welcome, {user.username}</li>
+            <li><span>Welcome, {user.username}</span></li>
             <li><button onClick={handleLogout}>Logout</button></li>
           </>
         ) : (
@@ -35,4 +35,3 @@ function Navbar({ user, setUser }) {
 }
 
 export default Navbar;
-

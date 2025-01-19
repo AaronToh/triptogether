@@ -21,7 +21,7 @@ function App() {
   return (
     <Router>
       <Navbar user={user} setUser={setUser} />
-      <div className="container">
+      <div className="container ">
         <Routes>
           <Route path="/" element={<Discover user={user}/>} />
           <Route path="/mytrips" element={<MyTrips user={user}/>} />
