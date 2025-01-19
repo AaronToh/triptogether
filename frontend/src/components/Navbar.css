@@ -1,0 +1,90 @@
+/* Sidebar Styling */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px; /* Width of the sidebar */
+  height: 100%; /* Full height */
+  background-color: #ffffff;
+  color: #333333;
+  display: flex;
+  flex-direction: column; /* Vertical layout */
+  align-items: flex-start;
+  padding: 20px;
+  z-index: 1000;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Scrollable if content overflows */
+}
+
+/* Sidebar Title */
+.sidebar h1 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 30px; /* Space between title and menu items */
+  text-align: left;
+}
+
+/* Sidebar List */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.sidebar ul li {
+  width: 100%;
+  margin-bottom: 15px; /* Space between list items */
+}
+
+.sidebar ul li a {
+  color: #333333;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px 15px;
+  border-radius: 4px;
+  display: block; /* Full width clickable */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+  background-color: #0066cc;
+  color: #ffffff;
+}
+
+/* Welcome Text Styling */
+.sidebar ul li span {
+  font-size: 16px;
+  color: #555;
+  font-weight: 500;
+  margin-left: 15px;
+}
+
+/* Button Styling */
+.sidebar button {
+  background-color: transparent;
+  color: #0066cc;
+  border: 2px solid #0066cc;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  margin-left: 15px;
+  width: calc(100% - 30px); /* Full width minus padding */
+}
+
+.sidebar button:hover {
+  background-color: #0066cc;
+  color: #ffffff;
+}
+
+/* Ensure Content Adjusts to Sidebar */
+.page-content {
+  margin-left: 250px; /* Matches the sidebar width */
+  padding: 20px;
+}

@@ -1,24 +1,26 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import './Navbar.css';
 
 function Navbar({ user, setUser }) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    setUser(null); // Clear user state
-    localStorage.removeItem('user'); // Clear user from localStorage
+    setUser(null);
+    localStorage.removeItem('user');
     navigate('/login');
   };
 
   return (
-    <nav className="navbar">
-      <h1>Trip Explorer</h1>
+    <nav className="sidebar">
+      <h1>TripTogether</h1> {/* Updated website title */}
       <ul>
         <li><Link to="/">Discover</Link></li>
-        <li><Link to="/mytrips">My Trips</Link></li>
+        {user && <li><Link to="/mytrips">My Trips</Link></li>} {/* Only show if logged in */}
         {user ? (
           <>
-            <li>Welcome, {user.username}</li>
+            <li><Link to="/addtrip">Add Trip</Link></li>
+            <li><span>Welcome, {user.username}</span></li>
             <li><button onClick={handleLogout}>Logout</button></li>
           </>
         ) : (
